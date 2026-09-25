@@ -19,13 +19,28 @@ default-root-container-orientation = 'horizontal'
 # Mouse follows focus when focused monitor changes
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
+# Open workspaces on the big Dell ultrawide when it is connected; otherwise fall back
+# to the main display. AeroSpace has no "largest monitor" pattern, so the monitor is
+# matched by name: update 'DELL' if the external monitor changes.
+[workspace-to-monitor-force-assignment]
+    1 = ['DELL', 'main']
+    2 = ['DELL', 'main']
+    3 = ['DELL', 'main']
+    4 = ['DELL', 'main']
+    5 = ['DELL', 'main']
+    6 = ['DELL', 'main']
+    7 = ['DELL', 'main']
+    8 = ['DELL', 'main']
+    9 = ['DELL', 'main']
+    10 = ['DELL', 'main']
+
 [mode.main.binding]
     # See: https://nikitabobko.github.io/AeroSpace/goodies#open-a-new-window-with-applescript
     alt-enter = '''exec-and-forget osascript -e \
     'tell application "Terminal" to tell (do script) to activate' '''
 
-    alt-n = '''exec-and-forget osascript -e \
-    'tell application "Terminal" to tell (do script) to activate' '''
+    # New terminal in the working directory of the focused Terminal/iTerm2 window
+    alt-n = 'exec-and-forget /Users/klaashofman/Development/Rimshot/sandbox/aerospace/new-terminal.sh'
 
     # Chrome is the default browser; --new-window makes it open a window even if already running
     alt-c = 'exec-and-forget open -n -a "Google Chrome" --args --new-window'
@@ -55,6 +70,10 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
     alt-shift-down =  'move down'
     alt-shift-up =    'move up'
     alt-shift-right = 'move right'
+
+    # Send the focused window to the big (Dell) or small (built-in) monitor, keeping focus on it
+    alt-pageUp =   'move-node-to-monitor --focus-follows-window DELL'
+    alt-pageDown = 'move-node-to-monitor --focus-follows-window built-in'
 
     # Consider using 'join-with' command as a 'split' replacement if you want to enable
     # normalizations
