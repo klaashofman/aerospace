@@ -79,8 +79,8 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
     # normalizations
     alt-h = 'split horizontal'
 
-    # Launches a new VS Code instance (-n) rather than focusing an existing one
-    alt-v = 'exec-and-forget open -n "/Users/klaashofman/Applications/Visual Studio Code.app"'
+    # Always opens a new VS Code window; plain 'open -n' just focuses the running instance
+    alt-v = 'exec-and-forget open -n "/Users/klaashofman/Applications/Visual Studio Code.app" --args --new-window'
 
     alt-f = 'fullscreen'
 
